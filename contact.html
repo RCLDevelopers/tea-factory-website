@@ -126,37 +126,61 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h3 class="mb-4">Need a functional contact form?</h3>
                     <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://zangticsdigital.com/">Download Now</a>.</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 120px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
+                    <form id="contactForm">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                <label for="name">Your Name</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                <label for="email">Your Email</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                <label for="subject">Subject</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a message here" id="message" name="message" style="height: 120px" required></textarea>
+                <label for="message">Message</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <div id="formMessage" class="mt-2 text-success fw-semibold"></div>
+            <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Send Message</button>
+        </div>
+    </div>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch("contact.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(response => {
+        document.getElementById("formMessage").innerText = response;
+        form.reset();
+    })
+    .catch(error => {
+        document.getElementById("formMessage").innerText = "Error sending message. Please try again.";
+        console.error("Error:", error);
+    });
+});
+</script>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
@@ -182,7 +206,7 @@
                     <h4 class="text-primary mb-4">Our Office</h4>
                      <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Highway Opposite Gitoro Conference Center</p>
                     <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+254 782 626 767</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-2"></i>gulchinvestment@gmail.com</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-2"></i></p>
                     <div class="d-flex pt-3">
                         <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
