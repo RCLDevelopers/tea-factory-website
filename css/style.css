@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #88B44E;
+    --primary: #572237;
     --secondary: #FB9F38;
     --light: #F5F8F2;
     --dark: #252C30;
@@ -167,7 +167,7 @@
     bottom: 0;
     display: flex;
     align-items: center;
-    background: rgba(136, 180, 78, .7);
+    background: rgba(87, 34, 55, 0.747);
     z-index: 1;
 }
 
@@ -429,7 +429,7 @@
     max-width: 600px;
     text-align: center;
     background: #FFFFFF;
-    border: 30px solid var(--primary);
+    border: 0px solid var(--primary);
 }
 
 .testimonial-item img {
@@ -498,7 +498,7 @@
 }
 
 .copyright {
-    background: #252525;
+    background: #572237;
 }
 
 .copyright a:hover {
